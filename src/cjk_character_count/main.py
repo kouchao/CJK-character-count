@@ -1,9 +1,9 @@
 import argparse
 import sys
 from pathlib import Path
-from FontInfoCollector import FontInfoCollector
-from global_var import DisplayLanguage, CJKGroup, DisplayCJKTablesList, DisplayUnicodeBlocksList
-from localise import get_localised_label
+from .FontInfoCollector import FontInfoCollector
+from .global_var import DisplayLanguage, CJKGroup, DisplayCJKTablesList, DisplayUnicodeBlocksList
+from .localise import get_localised_label
 import pandas as pd
 
 def get_report_data(cjk_char_count, unicode_char_count, lang=DisplayLanguage.EN):

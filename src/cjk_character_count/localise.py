@@ -1,4 +1,4 @@
-from global_var import (
+from .global_var import (
     DisplayLanguage,
     CJK_NON_COMPATIBILITY_IDEOGRAPHS,
     CJK_ZERO_BLOCK,

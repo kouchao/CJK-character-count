@@ -3,7 +3,7 @@ from typing import Callable
 
 from fontTools.ttLib import TTCollection, TTFont, TTLibError, sfnt
 
-from global_var import DisplayCJKTablesList, DisplayUnicodeBlocksList, CJKGroup
+from .global_var import DisplayCJKTablesList, DisplayUnicodeBlocksList, CJKGroup
 
 
 def get_ttc_list(filename: str) -> list[str]:

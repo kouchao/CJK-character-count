@@ -4,7 +4,7 @@ requires-python = ">=3.13"
 
 [[package]]
 name = "cjk-character-count"
-version = "0.1.0"
+version = "0.60"
 source = { virtual = "." }
 dependencies = [
     { name = "fonttools" },
