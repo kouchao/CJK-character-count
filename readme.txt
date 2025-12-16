@@ -2,6 +2,15 @@ Made by NightFurySL2001 / 夜煞之乐2001
 Released under MIT License
 Copyright © 2020-2025 NFSL2001
 
+Modified by kouchao
+
+2025-12-16 v0.60
+Refactor code to be a pure Python package
+Remove GUI
+Add CLI arguments for output language and format (text/pandas DataFrame)
+Add library support for import usage
+Changed the package management tool to uv
+
 2025-11-27 v0.50
 Standardise counting table format and ordering
 Allow custom table load by adding new text file

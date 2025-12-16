@@ -1,13 +1,15 @@
-![Banner of CJK-character-count](resource/banner.png)
-
 # CJK-character-count
 
 This is a program that counts the amount of CJK characters based on Unicode ranges and Chinese encoding standards.  
 此软件以统一码（Unicode）区块与汉字编码标准统计字体内的汉字数量。
 
-**[Download here. 在此下载。](https://github.com/NightFurySL2001/CJK-character-count/releases)**
-
 ---
+
+## 来源
+
+This program is adapted from [NightFurySL2001/CJK-character-count](https://github.com/NightFurySL2001/CJK-character-count), and has been modified into CLI and API versions with added output formats (txt or pandas DataFrame).
+
+本程序来源于 [NightFurySL2001/CJK-character-count](https://github.com/NightFurySL2001/CJK-character-count)，修改为 cli 和 api 版本，并添加了输出格式（txt 或 pandas DataFrame）。
 
 ## How this works 如何运作
 
@@ -21,17 +23,76 @@ Major font formats are supported in this software.
 
 ` *.ttf, *.otf, *.woff, *.woff2, *.ttc, *.otc`
 
-## Software interface 软件界面
+## Installation 安装
 
-`main.exe` is the English version, `main-zhs.exe` is the Chinese (Simplified) version, `main-zht.exe` is the Chinese (Traditional) version.
+This project uses [uv](https://docs.astral.sh/uv/getting-started/installation/) for dependency management.
+本项目使用 [uv](https://docs.astral.sh/uv) 进行依赖管理，请确保已安装：
 
-`main.exe` 为英文版，`main-zhs.exe` 为简体中文版，`main-zht.exe` 为繁体中文版。
+```bash
+uv sync
+```
 
-<img src="https://raw.githubusercontent.com/NightFurySL2001/CJK-character-count/master/resource/jf-openhuninn-sample-en.png" width="500" >
+## Usage 使用方法
 
-<img src="https://raw.githubusercontent.com/NightFurySL2001/CJK-character-count/master/resource/jf-openhuninn-sample-zhs.png" width="500" >
+### CLI (Command Line Interface) 命令行
 
-<img src="https://raw.githubusercontent.com/NightFurySL2001/CJK-character-count/master/resource/jf-openhuninn-sample-zht.png" width="500" >
+Basic usage:
+基础用法：
+
+```sh
+python main.py /path/to/font.ttf
+```
+
+**Options 选项:**
+
+*   `filename`: Path to the font file. (Required)
+    *   字体文件路径。（必填）
+*   `--font-id`: Font ID for TTC/OTC files (default: -1, auto-select first).
+    *   TTC/OTC 字体 ID（默认：-1，自动选择第一个）。
+*   `--lang`: Output language / 输出语言 (`en`, `zhs`, `zht`, default: `zhs`).
+*   `--format`: Output format / 输出格式 (`txt`, `df`, default: `df`).
+    *   `txt`: Plain text report. 纯文本报告。
+    *   `df`: Pandas DataFrame string representation. Pandas DataFrame 字符串表示。
+
+**Examples 示例:**
+
+```sh
+# Default (Simplified Chinese, DataFrame output)
+# 默认（简体中文，DataFrame 输出）
+uv run main myfont.ttf
+
+# Traditional Chinese, Text output
+# 繁体中文，文本输出
+uv run main myfont.ttf --lang zht --format txt
+
+# Specific font in a TTC collection
+# 指定 TTC 集合中的特定字体
+uv run main myfont.ttc --font-id 1
+```
+
+### Library (Python Import) 库引用
+
+You can use this tool as a library in your own Python scripts.
+您可以在自己的 Python 脚本中将此工具作为库引用。
+
+```python
+from cjk_character_count import character
+
+# Get text report (default language is zhs, default format is df)
+# 获取报告（默认语言为 zhs，默认格式为 df）
+df = character("path/to/font.ttf")
+print(df)
+
+# Get DataFrame with Traditional Chinese headers
+# 获取繁体中文表头的 DataFrame
+df_zht = character("path/to/font.ttf", lang="zht", format="df")
+print(df_zht)
+
+# Get text report
+# 获取文本报告
+text_report = character("path/to/font.ttf", format="txt")
+print(text_report)
+```
 
 ## Currently supported encoding standard/standardization list 支援的编码标准／汉字表
 
@@ -79,7 +140,7 @@ Details of the character lists can be found in https://github.com/NightFurySL200
 -   [List of Frequently Used Characters of Compulsory Education/义务教育语文课程常用字表](https://old.pep.com.cn/xiaoyu/jiaoshi/tbjx/kbjd/kb2011/201202/t20120206_1099050.htm)
 
 -   [Chart of Standard Forms of Common National Characters/常用國字標準字體表](https://zh.wikipedia.org/wiki/%E5%B8%B8%E7%94%A8%E5%9C%8B%E5%AD%97%E6%A8%99%E6%BA%96%E5%AD%97%E9%AB%94%E8%A1%A8)  
-    \*_Note: Old name in this software was 《台湾教育部常用字表》.  
+    \*_Note: Old name in this software was 《台湾教育部常用字表》。  
     注：旧版软件内名称为《台湾教育部常用字表》。_
 -   [Chart of Standard Forms of Less-Than-Common National Characters/次常用國字標準字體表](https://zh.wikipedia.org/wiki/%E5%B8%B8%E7%94%A8%E5%9C%8B%E5%AD%97%E6%A8%99%E6%BA%96%E5%AD%97%E9%AB%94%E8%A1%A8)  
     \*_Note: Old name in this software was 《台湾教育部次常用字表》, and was temporarily removed in v0.10 and v0.11.  
@@ -100,35 +161,22 @@ Details of the character lists can be found in https://github.com/NightFurySL200
 This software is licensed under [MIT License](https://opensource.org/licenses/MIT). Details of the license can be found in the [accompanying `LICENSE` file](LICENSE).  
 本软件以 [MIT 授权条款](https://opensource.org/licenses/MIT)发布。授权详情可在[随附的 `LICENSE` 文件内](LICENSE)查阅。
 
-## To build 如何构建
-
-Please install [latest version of Python 3](https://www.python.org/downloads/) and set up a new virtual environment with `python3 -m venv venv`.  
-请先安装[最新版本的 Python 3](https://www.python.org/downloads/) 并创建新的虚拟环境 `python3 -m venv venv`。
-
-Install the required dependencies:  
-安装需要的依赖模块：
-
-```sh
-pip3 install -r requirements.txt
-```
-
-And then build the program:  
-最后构建软件：
-
-```sh
-.\build.bat
-```
-
-## To-do 待办事项
-
--   Redesign GUI with [Kivy](https://kivy.org/)/[PySide6]().
-
 ## Changelog 更新日志
 
 Refer to [readme.txt](readme.txt). 参考[readme.txt](readme.txt)。
 
 ---
 
-This program is requested by [MaoKen](http://www.maoken.com/). Visit their site to see this in action.
+This program is requested by [ziticool](ztcool.com.cn). Visit their site to see this in action.
 
-此软件由[猫啃网](http://www.maoken.com/)要求。浏览该网址以查看使用方式。
+此软件由[ziticool](ztcool.com.cn)要求。浏览该网址以查看使用方式。
+
+## 致谢
+
+Thank you to [NightFurySL2001](https://github.com/NightFurySL2001) for the original code.
+The complete refactoring was done by [Trae](https://www.trae.ai/) .
+The translation was completed by [DeepSeek](https://www.deepseek.com/) .
+
+感谢 [NightFurySL2001](https://github.com/NightFurySL2001) 提供的原始代码。
+重构由 [Trae](https://www.trae.ai/)  完成。
+翻译由 [DeepSeek](https://www.deepseek.com/) 完成。
