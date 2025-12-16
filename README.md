@@ -16,6 +16,13 @@ This program is adapted from [NightFurySL2001/CJK-character-count](https://githu
 This program accepts 1 font file at a time (OpenType/TrueType single font file currently) and extract the character list from `cmap` table, which records the Unicode (base-10)-glyph shape for a font. The list is then parsed to count the amount of characters based on Unicode ranges (comparing the hexadecimal range) and Chinese encoding standards (given a list of .txt files with the actual character in it).  
 此软件可计算一套字体内的汉字数量，目前只限 OpenType/TrueType 单字体文件而已。导入字体时，软件将从`cmap`表（储存字体内（十进制）统一码与字符对应的表）提取汉字列表，然后以该列表依统一码区块（比对十六进制码位）与汉字编码标准（比对 .txt 文件）统计字体内的汉字数量。
 
+## Install 安装
+```base
+pip install cjk-character-count
+# or use uv
+uv add cjk-character-count
+```
+
 ## Currently supported font formats 支援的字体格式
 
 Major font formats are supported in this software.  
@@ -40,7 +47,7 @@ Basic usage:
 基础用法：
 
 ```sh
-python main.py /path/to/font.ttf
+uv run src.main /path/to/font.ttf
 ```
 
 **Options 选项:**
