@@ -170,13 +170,13 @@ This software is licensed under [MIT License](https://opensource.org/licenses/MI
 
 ## Changelog 更新日志
 
-Refer to [readme.txt](readme.txt). 参考[readme.txt](readme.txt)。
+Refer to [CHANGELOG.md](CHANGELOG.md). 参考[CHANGELOG.md](CHANGELOG.md)。
 
 ---
 
-This program is requested by [ziticool](ztcool.com.cn). Visit their site to see this in action.
+This program is requested by [ziticool（开发中还未上线）](http://ztcool.com.cn). Visit their site to see this in action.
 
-此软件由[ziticool](ztcool.com.cn)要求。浏览该网址以查看使用方式。
+此软件由[ziticool（开发中还未上线）](http://ztcool.com.cn)要求。浏览该网址以查看使用方式。
 
 ## 致谢
 
